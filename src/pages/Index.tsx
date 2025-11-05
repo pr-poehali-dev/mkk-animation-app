@@ -13,6 +13,7 @@ const Index = () => {
   const [loanAmount, setLoanAmount] = useState(15000);
   const [loanPeriod, setLoanPeriod] = useState(14);
   const [showForm, setShowForm] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -72,12 +73,114 @@ const Index = () => {
             </div>
             <span className="text-xl font-bold">Деньги в дом</span>
           </div>
-          <Button size="sm" className="gap-2">
-            <Icon name="Download" size={16} />
-            Скачать приложение
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button size="sm" className="gap-2 hidden md:flex">
+              <Icon name="Download" size={16} />
+              Скачать приложение
+            </Button>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="gap-2"
+            >
+              <Icon name={menuOpen ? "X" : "Menu"} size={20} />
+            </Button>
+          </div>
         </div>
       </header>
+
+      <div
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
+          menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setMenuOpen(false)}
+      />
+
+      <nav
+        className={`fixed top-0 right-0 h-full w-80 bg-background shadow-2xl z-50 transform transition-transform duration-300 ease-out ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        style={{ borderBottomLeftRadius: '2rem', borderTopLeftRadius: '2rem' }}
+      >
+        <div className="p-6 space-y-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center shadow-lg">
+                <Icon name="Home" size={28} className="text-white" />
+              </div>
+              <div>
+                <h2 className="font-bold text-lg">Деньги в дом</h2>
+                <p className="text-xs text-muted-foreground">МКК</p>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setMenuOpen(false)}
+            >
+              <Icon name="X" size={20} />
+            </Button>
+          </div>
+
+          <div className="space-y-2">
+            <a
+              href="#calculator"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
+            >
+              <Icon name="Calculator" size={20} className="text-primary" />
+              <span className="font-medium">Калькулятор займа</span>
+            </a>
+            <a
+              href="#conditions"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
+            >
+              <Icon name="FileCheck" size={20} className="text-primary" />
+              <span className="font-medium">Условия займа</span>
+            </a>
+            <a
+              href="#faq"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
+            >
+              <Icon name="HelpCircle" size={20} className="text-primary" />
+              <span className="font-medium">Вопросы и ответы</span>
+            </a>
+            <a
+              href="#contacts"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
+            >
+              <Icon name="Phone" size={20} className="text-primary" />
+              <span className="font-medium">Контакты</span>
+            </a>
+          </div>
+
+          <div className="pt-6 border-t">
+            <Button className="w-full gap-2" size="lg">
+              <Icon name="Download" size={18} />
+              Скачать приложение
+            </Button>
+          </div>
+
+          <div className="space-y-3 pt-4">
+            <div className="flex items-center gap-2 text-sm">
+              <Icon name="Phone" size={16} className="text-muted-foreground" />
+              <a href="tel:88001234567" className="hover:text-primary transition-colors">
+                8 (800) 123-45-67
+              </a>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <Icon name="Mail" size={16} className="text-muted-foreground" />
+              <a href="mailto:info@money-financei.ru" className="hover:text-primary transition-colors">
+                info@money-financei.ru
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <main className="container py-12 space-y-16 animate-fade-in">
         <section className="text-center space-y-4 py-12 animate-slide-up">
@@ -203,7 +306,7 @@ const Index = () => {
           </section>
         )}
 
-        <section className="max-w-4xl mx-auto space-y-8">
+        <section id="conditions" className="max-w-4xl mx-auto space-y-8">
           <h2 className="text-3xl font-bold text-center">Условия получения займа</h2>
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="text-center hover:shadow-lg transition-shadow">
@@ -244,7 +347,7 @@ const Index = () => {
           </div>
         </section>
 
-        <section className="max-w-3xl mx-auto space-y-8">
+        <section id="faq" className="max-w-3xl mx-auto space-y-8">
           <h2 className="text-3xl font-bold text-center">Часто задаваемые вопросы</h2>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
@@ -300,7 +403,7 @@ const Index = () => {
           </Card>
         </section>
 
-        <section className="max-w-3xl mx-auto space-y-6">
+        <section id="contacts" className="max-w-3xl mx-auto space-y-6">
           <h2 className="text-3xl font-bold text-center">Контактная информация</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Card>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкция по встраиванию виджета - Деньги в дом</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0EA5E9, #6366F1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 24px;
+            color: #334155;
+            margin: 30px 0 15px;
+        }
+        h3 {
+            font-size: 18px;
+            color: #475569;
+            margin: 20px 0 10px;
+        }
+        p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 20px 0;
+            position: relative;
+        }
+        .code-block code {
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #0EA5E9;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #0284c7;
+        }
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+        .method {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #0EA5E9;
+        }
+        .badge {
+            display: inline-block;
+            background: #0EA5E9;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .preview {
+            border: 2px dashed #cbd5e1;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+            background: #f8fafc;
+        }
+        .preview-link {
+            display: inline-block;
+            background: #6366F1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .preview-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        ul {
+            margin-left: 20px;
+            color: #64748b;
+            line-height: 1.8;
+        }
+        .highlight {
+            background: #fef3c7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="logo">
+                <div class="logo-icon">🏠</div>
+                <div>
+                    <h1>Виджет калькулятора займов</h1>
+                    <p style="margin: 0;">Деньги в дом</p>
+                </div>
+            </div>
+            
+            <p>Встройте калькулятор займов на свой сайт или страницу Tilda. Виджет адаптивный, работает на всех устройствах и автоматически подстраивается под дизайн вашего сайта.</p>
+
+            <div class="preview">
+                <p><strong>📱 Посмотреть виджет в действии:</strong></p>
+                <a href="/widget" target="_blank" class="preview-link">Открыть демо виджета</a>
+            </div>
+
+            <h2>🎯 Способы встраивания</h2>
+
+            <div class="method">
+                <span class="badge">РЕКОМЕНДУЕТСЯ</span>
+                <h3>Способ 1: Полноэкранный виджет (iframe)</h3>
+                <p>Подходит для отдельной страницы или блока на сайте. Виджет будет занимать всю ширину контейнера.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode('code1')">📋 Копировать</button>
+                    <code id="code1">&lt;iframe 
+    src="https://ваш-домен.ru/widget" 
+    style="width: 100%; min-height: 700px; border: none; border-radius: 16px;"
+    frameborder="0"
+&gt;&lt;/iframe&gt;</code>
+                </div>
+
+                <p><strong>Для Tilda:</strong></p>
+                <ul>
+                    <li>Добавьте блок <span class="highlight">T123 - HTML-код</span></li>
+                    <li>Вставьте код выше в настройки блока</li>
+                    <li>Сохраните и опубликуйте страницу</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3>Способ 2: Модальное окно (popup)</h3>
+                <p>Виджет открывается по клику на кнопку. Удобно для размещения на любой странице.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode('code2')">📋 Копировать</button>
+                    <code id="code2">&lt;!-- Кнопка открытия виджета --&gt;
+&lt;button onclick="openLoanWidget()" style="
+    background: linear-gradient(135deg, #0EA5E9, #6366F1);
+    color: white;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+"&gt;
+    🏠 Рассчитать займ
+&lt;/button&gt;
+
+&lt;!-- Модальное окно --&gt;
+&lt;div id="loanWidgetModal" style="
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    padding: 20px;
+"&gt;
+    &lt;div style="
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    "&gt;
+        &lt;button onclick="closeLoanWidget()" style="
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+        "&gt;✕&lt;/button&gt;
+        
+        &lt;iframe 
+            src="https://ваш-домен.ru/widget" 
+            style="width: 100%; height: 80vh; border: none; border-radius: 16px; background: white;"
+            frameborder="0"
+        &gt;&lt;/iframe&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+function openLoanWidget() {
+    document.getElementById('loanWidgetModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+function closeLoanWidget() {
+    document.getElementById('loanWidgetModal').style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+&lt;/script&gt;</code>
+                </div>
+
+                <p><strong>Для Tilda:</strong></p>
+                <ul>
+                    <li>Добавьте блок <span class="highlight">T123 - HTML-код</span></li>
+                    <li>Вставьте весь код выше</li>
+                    <li>Кнопка появится на странице автоматически</li>
+                </ul>
+            </div>
+
+            <div class="method">
+                <h3>Способ 3: Встроенный блок</h3>
+                <p>Виджет встраивается как часть страницы, между другими блоками контента.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode('code3')">📋 Копировать</button>
+                    <code id="code3">&lt;div style="max-width: 700px; margin: 40px auto; padding: 0 20px;"&gt;
+    &lt;iframe 
+        src="https://ваш-домен.ru/widget" 
+        style="width: 100%; min-height: 650px; border: none;"
+        frameborder="0"
+    &gt;&lt;/iframe&gt;
+&lt;/div&gt;</code>
+                </div>
+            </div>
+
+            <h2>⚙️ Настройка</h2>
+            <p>Замените <span class="highlight">https://ваш-домен.ru</span> на URL вашего приложения после публикации проекта.</p>
+            
+            <h3>Параметры URL (опционально):</h3>
+            <div class="code-block">
+                <code>/widget?amount=20000&period=21</code>
+            </div>
+            <ul>
+                <li><strong>amount</strong> - начальная сумма займа (3000-30000)</li>
+                <li><strong>period</strong> - начальный срок в днях (7-30)</li>
+            </ul>
+
+            <h2>📱 Адаптивность</h2>
+            <p>Виджет автоматически адаптируется под размер экрана:</p>
+            <ul>
+                <li>Десктоп: полноценный интерфейс</li>
+                <li>Планшет: оптимизированные отступы</li>
+                <li>Мобильный: упрощенная версия для удобства</li>
+            </ul>
+
+            <h2>🎨 Кастомизация</h2>
+            <p>Чтобы изменить цвета виджета под ваш бренд, свяжитесь с поддержкой:</p>
+            <ul>
+                <li>📞 Телефон: 8 (800) 123-45-67</li>
+                <li>📧 Email: info@money-financei.ru</li>
+            </ul>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, #0EA5E9, #6366F1); color: white;">
+            <h2 style="color: white;">💡 Нужна помощь?</h2>
+            <p style="color: rgba(255,255,255,0.9);">Наша команда поможет с установкой виджета на ваш сайт бесплатно!</p>
+            <p style="color: rgba(255,255,255,0.9); margin: 0;">Просто напишите нам на info@money-financei.ru</p>
+        </div>
+    </div>
+
+    <script>
+        function copyCode(elementId) {
+            const code = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Скопировано!';
+                btn.style.background = '#10b981';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#0EA5E9';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
